@@ -2,7 +2,14 @@
 
     <featureManager>
         <platform>jakartaee-10.0</platform>
-        <feature>pages</feature>
+        <platform>microprofile-7.0</platform>
+         <feature>jsonb</feature>
+         <feature>jsonp</feature>
+         <feature>pages</feature>
+         <feature>cdi</feature>
+         <feature>ejb</feature>
+         <feature>restfulWS</feature>
+        <feature>mpConfig</feature>
     </featureManager>
 
     <variable name="http.port" defaultValue="9080" />

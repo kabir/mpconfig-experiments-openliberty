@@ -15,10 +15,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>guide-maven-multimodules-war</artifactId>
+    <artifactId>guide-maven-multimodules-warB</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>guide-maven-multimodules-war</name>
+    <name>guide-maven-multimodules-warB</name>
     <url>http://maven.apache.org</url>
 
     <properties>

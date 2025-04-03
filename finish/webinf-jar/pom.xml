@@ -4,22 +4,17 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
     http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <!-- tag::parent[] -->
     <parent>
         <groupId>io.openliberty.guides</groupId>
         <artifactId>guide-maven-multimodules</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <!-- end::parent[] -->
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>guide-maven-multimodules-war</artifactId>
-    <packaging>war</packaging>
+    <artifactId>guide-maven-multimodules-webinf-jar</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>guide-maven-multimodules-war</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,13 +24,6 @@
     </properties>
 
     <dependencies>
-        <!-- Provided dependencies -->
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
@@ -43,20 +31,6 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-
-        <!-- tag::dependency[] -->
-        <dependency>
-            <groupId>io.openliberty.guides</groupId>
-            <artifactId>guide-maven-multimodules-webinf-jar</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.guides</groupId>
-            <artifactId>guide-maven-multimodules-lib-jar</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- end::dependency[] -->
-
     </dependencies>
 
 </project>

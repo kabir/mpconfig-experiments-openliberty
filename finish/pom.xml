@@ -19,8 +19,10 @@
 
     <!-- tag::modules[] -->
     <modules>
-        <module>jar</module>
+        <module>webinf-jar</module>
+        <module>lib-jar</module>
         <module>war</module>
+        <module>warB</module>
         <module>ear</module>
     </modules>
     <!-- end::modules[] -->
