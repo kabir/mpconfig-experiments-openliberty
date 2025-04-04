@@ -23,8 +23,8 @@ Each REST endpoint call will give output, and also log the values of properties 
 To deploy in WildFly, deploy as usual. I have been starting WildFly with `standalone-microprofile.xml`.
 
 The REST endpoints are at:
-* http://localhost:8080/guide-maven-multimodules-war-1.0-SNAPSHOT
-* http://localhost:8080/guide-maven-multimodules-warB-1.0-SNAPSHOT
+* http://localhost:8080/guide-maven-multimodules-war
+* http://localhost:8080/guide-maven-multimodules-warB
 
 Each REST endpoint call will give output, and also log the values of properties from various sources.
 

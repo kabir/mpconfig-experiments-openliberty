@@ -33,12 +33,14 @@
         <!-- web and jar modules as dependencies -->
         <!-- tag::dependencies[] -->
         <!-- tag::dependency-jar[] -->
+        <!--
         <dependency>
             <groupId>io.openliberty.guides</groupId>
             <artifactId>guide-maven-multimodules-ejb-jar</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
+        -->
         <!-- end::dependency-jar[] -->
         <!-- tag::dependency-war[] -->
         <dependency>
@@ -93,12 +95,15 @@
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
+                    <!-- Tell Maven we are using Jakarta EE -->
+                    <version>8</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
                         <!-- tag::webModule[] -->
                         <webModule>
                             <groupId>io.openliberty.guides</groupId>
                             <artifactId>guide-maven-multimodules-war</artifactId>
-                            <uri>/guide-maven-multimodules-war-1.0-SNAPSHOT.war</uri>
+                            <uri>/guide-maven-multimodules-war.war</uri>
                             <!-- Set custom context root -->
                             <!-- tag::contextRoot[] -->
                             <contextRoot>/sample</contextRoot>
@@ -107,7 +112,7 @@
                         <webModule>
                             <groupId>io.openliberty.guides</groupId>
                             <artifactId>guide-maven-multimodules-warB</artifactId>
-                            <uri>/guide-maven-multimodules-warB-1.0-SNAPSHOT.war</uri>
+                            <uri>/guide-maven-multimodules-warB.war</uri>
                             <!-- Set custom context root -->
                             <!-- tag::contextRoot[] -->
                             <contextRoot>/sampleB</contextRoot>
@@ -120,12 +125,15 @@
                             <artifactId>guide-maven-multimodules-lib-jar</artifactId>
                             <bundleDir>lib/</bundleDir>
                         </jarModule>
+                        <!--
                         <ejbModule>
                             <groupId>io.openliberty.guides</groupId>
                             <artifactId>guide-maven-multimodules-ejb-jar</artifactId>
                             <type>jar</type>
                         </ejbModule>
+                        -->
                     </modules>
+                    <outputFileNameMapping>@{artifactId}@@{dashClassifier?}@.@{extension}@</outputFileNameMapping>
                 </configuration>
             </plugin>
             <!-- end::maven-ear-plugin[] -->

@@ -45,8 +45,8 @@ public class SampleResource {
   @Inject
   private LibBean libBean;
 
-  @EJB
-  private StatelessSessionBean sessionBean;
+//  @EJB
+//  private StatelessSessionBean sessionBean;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -58,7 +58,7 @@ public class SampleResource {
             .add("WarConfig", propertyJsonBuilder("war", config))
             .add("WebInfJarConfig", propertyJsonBuilder("webinf", webInfJarBean.getConfig()))
             .add("LibBean", propertyJsonBuilder("lib", libBean.getConfig()))
-            .add("SLSB", propertyJsonBuilder("slsb", sessionBean.getConfig()))
+            //.add("SLSB", propertyJsonBuilder("slsb", sessionBean.getConfig()))
             .build();
   }
 
