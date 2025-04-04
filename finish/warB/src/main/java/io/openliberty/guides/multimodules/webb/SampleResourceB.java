@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-package io.openliberty.guides.multimodules.web;
+package io.openliberty.guides.multimodules.webb;
 
 import java.util.Map;
 import java.util.TreeMap;

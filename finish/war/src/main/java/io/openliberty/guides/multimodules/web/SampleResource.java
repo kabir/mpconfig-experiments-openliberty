@@ -44,6 +44,7 @@ public class SampleResource {
 
   @Inject
   private LibBean libBean;
+  
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)

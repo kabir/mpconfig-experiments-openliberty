@@ -19,6 +19,7 @@
 
     <!-- tag::modules[] -->
     <modules>
+        <module>ejb-jar</module>
         <module>webinf-jar</module>
         <module>lib-jar</module>
         <module>war</module>
