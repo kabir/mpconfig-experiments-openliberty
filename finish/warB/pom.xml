@@ -54,8 +54,15 @@
             <groupId>io.openliberty.guides</groupId>
             <artifactId>guide-maven-multimodules-lib-jar</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <!-- end::dependency[] -->
+        <dependency>
+            <groupId>io.openliberty.guides</groupId>
+            <artifactId>guide-maven-multimodules-ejb-jar</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 

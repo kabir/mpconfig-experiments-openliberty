@@ -14,6 +14,7 @@ package io.openliberty.guides.multimodules.webb;
 import java.util.Map;
 import java.util.TreeMap;
 
+import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
@@ -24,6 +25,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import io.openliberty.guides.multimodules.ejb.StatelessSessionBean;
 import io.openliberty.guides.multimodules.lib.LibBean;
 import io.openliberty.guides.multimodules.lib.WebInfJarBean;
 import org.eclipse.microprofile.config.Config;
@@ -43,6 +45,8 @@ public class SampleResourceB {
   @Inject
   private LibBean libBean;
 
+  @EJB
+  private StatelessSessionBean sessionBean;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -54,6 +58,7 @@ public class SampleResourceB {
             .add("WarConfig", propertyJsonBuilder("war", config))
             .add("WebInfJarConfig", propertyJsonBuilder("webinf", webInfJarBean.getConfig()))
             .add("LibBean", propertyJsonBuilder("lib", libBean.getConfig()))
+            .add("SLSB", propertyJsonBuilder("slsb", sessionBean.getConfig()))
             .build();
   }
 
@@ -72,9 +77,4 @@ public class SampleResourceB {
     }
     return propertiesBuilder.build();
   }
-
-  private void outputClassLoader(Class<?> clazz) {
-    System.out.println(clazz.getName() + ": " + clazz.getClassLoader());
-  }
-
 }
