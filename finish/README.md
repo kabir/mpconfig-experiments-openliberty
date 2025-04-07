@@ -51,3 +51,108 @@ The REST endpoints are at:
 
 Each REST endpoint call will give output, and also log the values of properties from various sources.
 
+# Findings
+
+We are testing four locations in the ear file:
+
+* webinf - the config injected into the war's SampleResource
+* webinflibjar - config injected into the lib included in each war's SampleResource
+* lib - config injected into the jar contained in the ear's lib/ folder
+* ejb - config injected into the ejb which is in an ejb jar module
+
+The properties follow the formats:
+
+* `sanity.test.only.<location>.property` - these are for properties which are only defined once. e.g. 
+`sanity.test.only,webinf.property` is a value only used in the config injected into the war's SampleResource
+* `sanity.test.shared.<location>[_<location>]*.property` - these are for properties, which are defined in several configs. 
+e.g `sanity.test.shared.ejb-lib-webinf-webinflib` is a value used in all the four above locations, while
+`sanity.test.shared.ejb-lib` is a value used in the 'lib' and 'ejb' locations.
+
+The below shows the retrieved values for the configs.
+
+In short:
+* If a property is defined in only one place, it has its expected value in both OpenLiberty and WildFly. It should be 
+noted that both servers appear to get config from classloaders they have access to apart from themselves. i.e.
+in the war we have access to the value of the `sanity.test.only.ejb.property` property (which comes from the ejb jar). 
+* If a property is defined in several places, the resulting value is not reliable, and varies depending on the server.
+This is likely due to the two servers having different ordering of how the classpath is resolved. Also, the ordinals of 
+the used microprofile-config.properties are the same. For this reason we should discourage the use of shared properties,
+and a future version of the specification could specify the behaviour.
+
+**WAR:**
+
+Property | OpenLiberty | WildFly
+---|-------------|---
+sanity.test.only,webinf.property | war | war
+sanity.test.only.ejb.property | ejb | ejb
+sanity.test.only.lib.property | lib | lib
+sanity.test.only.webinflibjar.property | webinflibjar | webinflibjar
+sanity.test.shared.ejb-lib | ejb | lib
+sanity.test.shared.ejb-lib-webinf | ejb | war
+sanity.test.shared.ejb-lib-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-lib-webinflib | ejb | webinflibjar
+sanity.test.shared.ejb-webinf | ejb | war
+sanity.test.shared.ejb-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-webinflib | ejb | webinflibjar
+sanity.test.shared.lib-webinf | lib | war
+sanity.test.shared.lib-webinf-webinflib | lib | war
+sanity.test.shared.lib-webinflib | lib | webinflibjar
+sanity.test.shared.webinf-webinflib | war | war
+
+**WEB-INF/lib/*.jar:**
+
+Property | OpenLiberty | WildFly
+---|-------------|---
+sanity.test.only,webinf.property | war | war
+sanity.test.only.ejb.property | ejb | ejb
+sanity.test.only.lib.property | lib | lib
+sanity.test.only.webinflibjar.property | webinflibjar | webinflibjar
+sanity.test.shared.ejb-lib | ejb | lib
+sanity.test.shared.ejb-lib-webinf | ejb | war
+sanity.test.shared.ejb-lib-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-lib-webinflib | ejb | webinflibjar
+sanity.test.shared.ejb-webinf | ejb | war
+sanity.test.shared.ejb-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-webinflib | ejb | webinflibjar
+sanity.test.shared.lib-webinf | lib | war
+sanity.test.shared.lib-webinf-webinflib | lib | war
+sanity.test.shared.lib-webinflib | lib | webinflibjar
+sanity.test.shared.webinf-webinflib | war | war
+
+
+**EAR lib:**
+
+Property | OpenLiberty | WildFly
+---|-------------|---
+sanity.test.only,webinf.property | war | war
+sanity.test.only.ejb.property | ejb | ejb
+sanity.test.only.lib.property | lib | lib
+sanity.test.only.webinflibjar.property | webinflibjar | webinflibjar
+sanity.test.shared.ejb-lib | ejb | lib
+sanity.test.shared.ejb-lib-webinf | ejb | war
+sanity.test.shared.ejb-lib-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-lib-webinflib | ejb | webinflibjar
+sanity.test.shared.ejb-webinf | ejb | war
+sanity.test.shared.ejb-webinf-webinflib | ejb | war
+sanity.test.shared.ejb-webinflib | ejb | webinflibjar
+sanity.test.shared.lib-webinf | lib | war
+sanity.test.shared.lib-webinf-webinflib | lib | war
+sanity.test.shared.lib-webinflib | lib | webinflibjar
+sanity.test.shared.webinf-webinflib | war | war
+
+**EJB:**
+
+Property | OpenLiberty | WildFly
+---|-------------|---
+sanity.test.only.ejb.property | ejb | ejb
+sanity.test.only.lib.property | lib | lib
+sanity.test.shared.ejb-lib | ejb | ejb
+sanity.test.shared.ejb-lib-webinf | ejb | ejb
+sanity.test.shared.ejb-lib-webinf-webinflib | ejb | ejb
+sanity.test.shared.ejb-lib-webinflib | ejb | ejb
+sanity.test.shared.ejb-webinf | ejb | ejb
+sanity.test.shared.ejb-webinf-webinflib | ejb | ejb
+sanity.test.shared.ejb-webinflib | ejb | ejb
+sanity.test.shared.lib-webinf | lib | lib
+sanity.test.shared.lib-webinf-webinflib | lib | lib
+sanity.test.shared.lib-webinflib | lib | lib
