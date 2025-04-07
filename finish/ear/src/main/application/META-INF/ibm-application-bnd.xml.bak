@@ -1,0 +1,4 @@
+<application-bnd>
+    <!-- Attach the shared EAR lib to all modules -->
+    <classloader commonLibraryRef="ear-lib"/>
+</application-bnd>

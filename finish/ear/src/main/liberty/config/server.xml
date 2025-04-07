@@ -15,15 +15,24 @@
     <variable name="http.port" defaultValue="9080" />
     <variable name="https.port" defaultValue="9443" />
 
-    <!-- tag::server[] -->
     <httpEndpoint host="*" httpPort="${http.port}"
         httpsPort="${https.port}" id="defaultHttpEndpoint" />
 
-    <!-- tag::EARdefinition[] -->
+
+
+
     <enterpriseApplication id="guide-maven-multimodules-ear"
         location="guide-maven-multimodules-ear.ear"
-        name="guide-maven-multimodules-ear" />
-    <!-- end::EARdefinition[] -->
-    <!-- end::server[] -->
+        name="guide-maven-multimodules-ear"
+        useApplicationClassLoaderForApplication="true"
+        explode="false">
+        <!--
+        This can also be 'parentLast'.
+        parentFirst: loads classes from the shared lib before war/ear ones
+        parentLast: loads classes from shared lib after war/ear ones
+        -->
+        <classloading delegation="parentFirst" />
+    </enterpriseApplication>
+
 
 </server>
