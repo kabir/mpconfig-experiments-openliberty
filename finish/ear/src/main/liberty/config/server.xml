@@ -19,20 +19,26 @@
         httpsPort="${https.port}" id="defaultHttpEndpoint" />
 
 
+    <enterpriseApplication id="guide-maven-multimodules-ear"
+        location="guide-maven-multimodules-ear.ear"
+        name="guide-maven-multimodules-ear">
+    </enterpriseApplication>
 
 
+<!--
     <enterpriseApplication id="guide-maven-multimodules-ear"
         location="guide-maven-multimodules-ear.ear"
         name="guide-maven-multimodules-ear"
         useApplicationClassLoaderForApplication="true"
         explode="false">
-        <!--
+        &lt;!&ndash;
         This can also be 'parentLast'.
         parentFirst: loads classes from the shared lib before war/ear ones
         parentLast: loads classes from shared lib after war/ear ones
-        -->
+        &ndash;&gt;
         <classloading delegation="parentFirst" />
     </enterpriseApplication>
+-->
 
 
 </server>
