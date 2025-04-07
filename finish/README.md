@@ -77,7 +77,9 @@ in the war we have access to the value of the `sanity.test.only.ejb.property` pr
 * If a property is defined in several places, the resulting value is not reliable, and varies depending on the server.
 This is likely due to the two servers having different ordering of how the classpath is resolved. Also, the ordinals of 
 the used microprofile-config.properties are the same. For this reason we should discourage the use of shared properties,
-and a future version of the specification could specify the behaviour.
+and a future version of the specification could specify the behaviour. Note that adding `config_ordinal` to one of the 
+microprofile-config.properties files involved appears to work as expected, thus making the order more determinate.
+
 
 **WAR:**
 
