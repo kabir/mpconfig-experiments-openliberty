@@ -68,7 +68,8 @@ The properties follow the formats:
 e.g `sanity.test.shared.ejb-lib-webinf-webinflib` is a value used in all the four above locations, while
 `sanity.test.shared.ejb-lib` is a value used in the 'lib' and 'ejb' locations.
 
-The below shows the retrieved values for the configs.
+The below shows the retrieved values for the configs. They are created from accessing the first war (i.e not 
+the 'B' option)
 
 In short:
 * If a property is defined in only one place, it has its expected value in both OpenLiberty and WildFly. It should be 
@@ -122,7 +123,11 @@ sanity.test.shared.lib-webinflib | lib | webinflibjar
 sanity.test.shared.webinf-webinflib | war | war
 
 
-**EAR lib:**
+**EAR lib/*.jar:**
+
+Here it is odd that the injected config is the same instance as the one for one of the wars. 
+If we first access the 'war' endpoint, it becomes that of the 'war'.
+And if we first access the 'warB' endpoint, it becomes that of 'warB'.
 
 Property | OpenLiberty | WildFly
 ---|-------------|---

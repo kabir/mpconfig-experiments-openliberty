@@ -15,4 +15,8 @@ public class StatelessSessionBean {
         System.out.println("StatelessSessionBean: " + this.getClass().getClassLoader());
         return config;
     }
+
+    public Config getConfigQuietly() {
+        return config;
+    }
 }

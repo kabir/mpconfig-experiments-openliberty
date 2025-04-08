@@ -14,4 +14,8 @@ public class WebInfJarBean {
         System.out.println("WebInfJarBean: " + this.getClass().getClassLoader());
         return config;
     }
+
+    public Config getConfigQuietly() {
+        return config;
+    }
 }

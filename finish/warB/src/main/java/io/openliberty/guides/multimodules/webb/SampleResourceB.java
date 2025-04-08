@@ -53,12 +53,28 @@ public class SampleResourceB {
   public JsonObject getAllConfig() {
     System.out.println("SampleResource: " + this.getClass().getClassLoader());
 
+    System.out.println("My config " + config);
+    System.out.println("WebInLibfConfig " + webInfJarBean.getConfigQuietly());
+    System.out.println("LibConfig " + libBean.getConfigQuietly());
+    System.out.println("EJBConfig " + sessionBean.getConfigQuietly());
+
     JsonObjectBuilder builder = Json.createObjectBuilder();
     return builder
             .add("WarConfig", propertyJsonBuilder("war", config))
             .add("WebInfJarConfig", propertyJsonBuilder("webinf", webInfJarBean.getConfig()))
             .add("LibBean", propertyJsonBuilder("lib", libBean.getConfig()))
             .add("SLSB", propertyJsonBuilder("slsb", sessionBean.getConfig()))
+            .build();
+  }
+
+  @GET
+  @Path("earlib")
+  @Produces(MediaType.APPLICATION_JSON)
+  public JsonObject getLibConfig() {
+    JsonObjectBuilder builder = Json.createObjectBuilder();
+    return builder
+            .add("LibBean", propertyJsonBuilder("lib", libBean.getConfig()))
+
             .build();
   }
 

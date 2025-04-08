@@ -15,4 +15,9 @@ public class LibBean {
         System.out.println("LibBean: " + this.getClass().getClassLoader());
         return config;
     }
+
+    public Config getConfigQuietly() {
+        return config;
+    }
+
 }
